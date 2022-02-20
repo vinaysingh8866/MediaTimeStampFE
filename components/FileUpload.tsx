@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-
+import keccak256 from 'keccak256';
 import { sha256 } from 'js-sha256';
 
 const FileUpload = () => {
@@ -16,10 +16,9 @@ const FileUpload = () => {
       const reader = new FileReader();
       reader.onload = function (e) {
         const content = reader.result;
-        console.log(content);
-        alert(sha256(content));
+        alert(keccak256(content).toString('hex'));
       };
-      const text = reader.readAsArrayBuffer(e.target.files[0]);
+      const text = reader.readAsBinaryString(e.target.files[0]);
       setFile(files[0]);
     }
   };
