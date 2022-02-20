@@ -3,6 +3,7 @@ import Head from "next/head";
 import Link from "next/link";
 import Account from "../components/Account";
 import ETHBalance from "../components/ETHBalance";
+import FileUpload from "../components/FileUpload";
 import TokenBalance from "../components/TokenBalance";
 import useEagerConnect from "../hooks/useEagerConnect";
 
@@ -18,14 +19,14 @@ function Home() {
   return (
     <div>
       <Head>
-        <title>next-web3-boilerplate</title>
+        <title>Mediatimestamp Hash</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <header>
         <nav>
           <Link href="/">
-            <a>next-web3-boilerplate</a>
+            <a>Mediatimestamp Hash</a>
           </Link>
 
           <Account triedToEagerConnect={triedToEagerConnect} />
@@ -33,7 +34,7 @@ function Home() {
       </header>
 
       <main>
-        <h1>
+        {/* <h1>
           Welcome to{" "}
           <a href="https://github.com/mirshko/next-web3-boilerplate">
             next-web3-boilerplate
@@ -46,7 +47,10 @@ function Home() {
 
             <TokenBalance tokenAddress={DAI_TOKEN_ADDRESS} symbol="DAI" />
           </section>
-        )}
+        )} */}
+
+        <FileUpload/>
+      
       </main>
 
       <style jsx>{`
