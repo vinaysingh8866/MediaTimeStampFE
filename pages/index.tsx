@@ -1,20 +1,45 @@
 import { useWeb3React } from "@web3-react/core";
 import Head from "next/head";
 import Link from "next/link";
+import { useState } from "react";
 import Account from "../components/Account";
 import ETHBalance from "../components/ETHBalance";
 import FileUpload from "../components/FileUpload";
+import PutHash from "../components/PutHash";
 import TokenBalance from "../components/TokenBalance";
+import useContract from "../hooks/useContract";
 import useEagerConnect from "../hooks/useEagerConnect";
 
 const DAI_TOKEN_ADDRESS = "0x6b175474e89094c44da98b954eedeac495271d0f";
 
-function Home() {
+
+
+type TransactionData = {
+  fileNameHash:string,
+  dataHash:String
+};
+
+const Home = () => {
+
+  function modifyData(fileNameHash, dataHash){
+   
+   setdata({
+     fileNameHash : fileNameHash, 
+     dataHash : dataHash
+    });
+  }
+  
+  var [data, setdata] = useState({
+    fileNameHash:"",
+    dataHash:""
+  });
+  
   const { account, library } = useWeb3React();
 
   const triedToEagerConnect = useEagerConnect();
 
   const isConnected = typeof account === "string" && !!library;
+  
 
   return (
     <div>
@@ -49,8 +74,8 @@ function Home() {
           </section>
         )} */}
 
-        <FileUpload/>
-      
+        <FileUpload modifyData={ modifyData }/>
+        <PutHash triedToEagerConnect={triedToEagerConnect as any} data={data}/>
       </main>
 
       <style jsx>{`
