@@ -34,7 +34,7 @@ const PutHash = ({ triedToEagerConnect, data }) => {
     const signer = provider.getSigner();
     
     const contract = new ethers.Contract(
-        "0xe8a0544C99FB3c7c15D5AdD8F9d7F1ada68d66E5",
+        "0xEaa13d1E2Bc24c30F5d38d47C1000B37FDfc2710",
         abi,
         signer
     );
