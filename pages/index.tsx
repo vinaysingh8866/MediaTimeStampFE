@@ -3,6 +3,7 @@ import Head from "next/head";
 import Link from "next/link";
 import { useState } from "react";
 import Account from "../components/Account";
+import CheckHash from "../components/CheckHash";
 import ETHBalance from "../components/ETHBalance";
 import FileUpload from "../components/FileUpload";
 import PutHash from "../components/PutHash";
@@ -76,6 +77,7 @@ const Home = () => {
 
         <FileUpload modifyData={ modifyData }/>
         <PutHash triedToEagerConnect={triedToEagerConnect as any} data={data}/>
+        <CheckHash triedToEagerConnect={triedToEagerConnect as any} data={data}/>
       </main>
 
       <style jsx>{`

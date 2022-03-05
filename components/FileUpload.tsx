@@ -9,6 +9,7 @@ type TransactionData = {
 const FileUpload = ({modifyData}) => {
   const inputFile = useRef(null);
   const [firstFileName, setFirstFileName] = useState("")
+  const [firstFileHash, setFirstFileHash] = useState("")
   const handleFileUpload = (e) => {
     const { files } = e.target;
     if (files && files.length) {
@@ -20,13 +21,14 @@ const FileUpload = ({modifyData}) => {
       const fileType = parts[parts.length - 1];
       const reader = new FileReader();
       reader.onload = function (e) {
-        const content = reader.result;
+        const content = reader.result as string;
         const fileHash = keccak256(filename).toString('hex')
         const dataHash = keccak256(content).toString('hex')
         // const fileHash = sha256(firstFileName)
         // const dataHash = sha256(content)
         console.log("0x" + dataHash, "0x" + fileHash)
         modifyData("0x" + dataHash, "0x" + fileHash)
+        setFirstFileHash("0x" + dataHash)
       };
       const text = reader.readAsBinaryString(e.target.files[0]);
     }
@@ -44,9 +46,11 @@ const FileUpload = ({modifyData}) => {
         onChange={handleFileUpload}
         type="file"
       />
-      <div className="button" onClick={onButtonClick}>
+      {firstFileName}<br></br>{firstFileHash}
+      <br></br>
+      <button className="button" onClick={onButtonClick}>
         Upload
-      </div>
+      </button>
     </div>
   );
 };

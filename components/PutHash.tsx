@@ -7,8 +7,7 @@ import useContract from "../hooks/useContract";
 import useENSName from "../hooks/useENSName";
 import useMetaMaskOnboarding from "../hooks/useMetaMaskOnboarding";
 import { formatEtherscanLink, shortenHex } from "../util";
-const abi = [{"inputs":[{"internalType":"address","name":"","type":"address"}],"name":"data","outputs":[{"internalType":"uint256","name":"totalStamps","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"bytes32","name":"nameHash","type":"bytes32"}],"name":"getTimeStamp","outputs":[{"internalType":"bytes32","name":"stampHash","type":"bytes32"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"bytes32","name":"stampHash","type":"bytes32"},{"internalType":"bytes32","name":"nameHash","type":"bytes32"}],"name":"insertTimeStamp","outputs":[],"stateMutability":"nonpayable","type":"function"}];
-
+const abi = [{"inputs":[{"internalType":"address","name":"","type":"address"}],"name":"data","outputs":[{"internalType":"uint256","name":"totalStamps","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"bytes32","name":"","type":"bytes32"}],"name":"fileOwners","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"bytes32","name":"stampHash","type":"bytes32"}],"name":"getOwner","outputs":[{"internalType":"address","name":"owner","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"bytes32","name":"nameHash","type":"bytes32"}],"name":"getTimeStamp","outputs":[{"internalType":"bytes32","name":"stampHash","type":"bytes32"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"bytes32","name":"","type":"bytes32"}],"name":"imageMetaData","outputs":[{"internalType":"uint256","name":"time","type":"uint256"},{"internalType":"uint256","name":"gps","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"time","type":"uint256"},{"internalType":"uint256","name":"gps","type":"uint256"},{"internalType":"bytes32","name":"stampHash","type":"bytes32"}],"name":"insertImageMeta","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"bytes32[]","name":"stampHash","type":"bytes32[]"},{"internalType":"bytes32[]","name":"nameHash","type":"bytes32[]"}],"name":"insertMultiple","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"bytes32","name":"stampHash","type":"bytes32"},{"internalType":"bytes32","name":"nameHash","type":"bytes32"}],"name":"insertTimeStamp","outputs":[],"stateMutability":"nonpayable","type":"function"}]
 type AccountProps = {
   triedToEagerConnect: boolean;
 };
@@ -35,7 +34,7 @@ const PutHash = ({ triedToEagerConnect, data }) => {
     const signer = provider.getSigner();
     
     const contract = new ethers.Contract(
-        "0xA7aDb6c36F3FCFE17DB3450A29C1F89081538B21",
+        "0xe8a0544C99FB3c7c15D5AdD8F9d7F1ada68d66E5",
         abi,
         signer
     );
@@ -96,7 +95,7 @@ const PutHash = ({ triedToEagerConnect, data }) => {
 
   return (
     <button onClick={SendData}>
-        Get Hash
+        Insert Hash
     </button>
   );
 };
